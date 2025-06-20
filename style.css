@@ -33,3 +33,26 @@
   100% { transform: none; }
 }
 #camera-feed { animation: glitch 5s infinite; }
+
+.glitch {
+  position: relative;
+  display: inline-block;
+}
+.glitch::before, .glitch::after {
+  content: attr(data-text);
+  position: absolute; top:0; left:0;
+  /* identical size/position as parent text */
+  color: #fff; /* base color, will be overridden by shadow */
+}
+.glitch::before { text-shadow: 2px 0 red;  animation: glitchAnim 2s infinite; }
+.glitch::after  { text-shadow: -2px 0 blue; animation: glitchAnim2 2s infinite; }
+@keyframes glitchAnim {
+  0% { transform: translate(0, 0); opacity:1; }
+  50% { transform: translate(-2px, -1px); opacity:0.8;}
+  100% { transform: translate(0,0); opacity:1;}
+}
+@keyframes glitchAnim2 {
+  0% { transform: translate(0, 0); opacity:1;}
+  50% { transform: translate(2px, 1px); opacity:0.8;}
+  100% { transform: translate(0,0); opacity:1;}
+}
