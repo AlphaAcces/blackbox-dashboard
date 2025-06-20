@@ -1,104 +1,95 @@
-/* Global reset */
-* { margin:0; padding:0; box-sizing:border-box; }
+/* ---------- RESET & BAGGRUND ---------- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
 body {
-  background:#000;
-  color:#0f0;
-  font-family: monospace;
-  line-height:1.4;
-  padding:20px;
+  background: #000;
+  color: #0f0;
+  font-family: 'Courier New', monospace;
+  padding: 20px;
 }
 
-/* Logo */
-#logo {
-  position:fixed;
-  top:10px; right:10px;
-  width:80px;
-  opacity:0.8;
+/* ---------- LOGO & LOGIN ---------- */
+#login-screen { text-align: center; margin-bottom: 30px; }
+.logo {
+  width: 80px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+#login-screen input {
+  padding: 5px; font-size: 1em; margin-right: 10px;
+}
+#login-screen button {
+  padding: 5px 10px; font-size: 1em; cursor: pointer;
 }
 
-/* Panels */
+/* ---------- PANEL-BASE ---------- */
 .panel {
-  border:2px solid #0f0;
-  padding:15px;
-  margin:20px 0;
-  position:relative;
+  border: 2px solid #0f0;
+  padding: 15px;
+  margin: 20px 0;
+  position: relative;
 }
 
-/* Login */
-#login-screen { text-align:center; }
-#login-screen h1 { font-size:2rem; margin-bottom:10px; }
-.prompt { margin-bottom:5px; }
-#auth-code { padding:5px; width:200px; font-size:1rem; }
-#login-btn { padding:5px 15px; font-size:1rem; }
+/* ---------- MISSION LOG ---------- */
+#mission-log .log-text {
+  white-space: pre-wrap;
+  font-family: monospace;
+}
 
-/* Mission log text */
-.log-text { font-family: monospace; white-space: pre-wrap; }
-
-/* Threat map */
-.map-container { position:relative; display:inline-block; }
+/* ---------- THREAT MAP ---------- */
+.map-container { position: relative; }
+.map-container img {
+  width: 100%; max-width: 600px;
+}
 .marker {
-  position:absolute;
-  width:12px; height:12px;
-  background:rgba(0,255,0,0.8);
-  border:2px solid #0f0;
-  border-radius:50%;
-  animation: blink 1s infinite;
+  position: absolute;
+  width: 12px; height: 12px;
+  background: rgba(0,255,0,0.8);
+  border: 2px solid #0f0;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
 }
-.marker.critical { background:rgba(255,0,0,0.8); border-color:red; }
-@keyframes blink {
-  0%,50%,100% { opacity:1; }
-  25%,75%   { opacity:0; }
+.marker.critical {
+  background: rgba(255,0,0,0.8);
+  border-color: red;
 }
-
-/* Alerts */
-#alerts-list li {
-  color:#f00; font-weight:bold; margin-bottom:5px;
-}
-.alert-blink { animation: blink 1s 3; }
-
-/* Status */
-.status.active  { color:#0f0; animation: pulse 2s infinite; }
-.status.standby { color:#ff0; }
-
-/* Video + noise */
-.video-container { position:relative; width:100%; max-width:600px; margin:0 auto; }
-#camera-feed {
-  width:100%;
-  border:2px solid #0f0;
-}
-.noise-overlay {
-  position:absolute;
-  top:0; left:0;
-  width:100%; height:100%;
-  pointer-events:none;
-  opacity:0.2;
-  animation: glitch 5s infinite;
-}
-@keyframes glitch {
-  0%,20%,40%,60%,80%,100% { transform:translate(0,0); }
-  10% { transform:translate(-2px,2px); }
-  30% { transform:translate(2px,-2px); }
-  50% { transform:translate(-2px,-2px); }
-  70% { transform:translate(2px,2px); }
-  90% { transform:translate(-2px,0); }
-}
-
-/* Traffic cams grid */
-#traffic-cams { margin:30px 0; }
-.cams-grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
-  gap:10px;
-}
-.cams-grid img {
-  width:100%; height:auto;
-  border:2px solid #0f0;
-  box-shadow:0 0 10px rgba(0,255,0,0.5);
-  background:#000;
-}
-
-/* Keyframes */
 @keyframes pulse {
-  0%,100% { opacity:1; }
-  50%      { opacity:0.5; }
+  0%,100% { opacity: 1; }
+  50%     { opacity: 0.5; }
+}
+
+/* ---------- INTRUSION ALERTS ---------- */
+#alerts-list li {
+  list-style: none;
+  color: #f00;
+  font-weight: bold;
+  margin: 5px 0;
+}
+.alert-blink {
+  animation: pulse 1s 3;
+}
+
+/* ---------- RED TEAM STATUS ---------- */
+.status.active  { color: lime; }
+.status.standby { color: yellow; }
+
+/* ---------- LIVE CAMS ---------- */
+.cams-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.cam {
+  flex: 1;
+  min-width: 240px;
+  text-align: center;
+}
+.cam img {
+  width: 100%;
+  border: 1px solid #0f0;
+  box-shadow: 0 0 10px rgba(0,255,0,0.5);
+}
+.cam-label {
+  margin-top: 5px;
+  font-size: 0.9em;
 }
