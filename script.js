@@ -41,3 +41,12 @@ function playLog() {
   0%, 50%, 100% { opacity: 1; }
   25%, 75% { opacity: 0; }
 }
+
+#alerts-list li {
+  color: #f00;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.alert-blink {  /* class to trigger a blink animation for new alerts */
+  animation: blink 1s 3;
+}
