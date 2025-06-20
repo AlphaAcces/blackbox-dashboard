@@ -1,39 +1,50 @@
+// --- LOGIN TYPEWRITER --- //
+const typeText = (el, text, speed=50, cb) => {
+  let i=0;
+  const tick = () => {
+    if (i < text.length) {
+      el.textContent += text.charAt(i++);
+      setTimeout(tick, speed);
+    } else cb && cb();
+  };
+  tick();
+};
 
-let i = 0;
-let text = "GREYEUE AI: Authenticating user...";
-let speed = 40;
-
-function typeWriter(targetElementId) {
-  if (i < text.length) {
-    document.getElementById(targetElementId).innerHTML += text.charAt(i);
-    i++;
-    setTimeout(() => typeWriter(targetElementId), speed);
-  } else {
-    document.getElementById("login-screen").classList.add("hidden");
-    document.getElementById("dashboard").classList.remove("hidden");
-    playLog();
-  }
-}
-
-document.getElementById("login-btn").addEventListener("click", function() {
-  document.getElementById("ai-feedback").innerHTML = "";
-  i = 0;
-  typeWriter("ai-feedback");
+const prompt = document.querySelector('.typewriter');
+typeText(prompt, '> INITIATING TERMINAL ACCESS...', 80, () => {
+  prompt.textContent = '> STANDBY FOR AUTHENTICATION';
 });
 
-const logMessages = [
-  "[00:00] Mission Protocol Initialized",
-  "[00:05] GreyEUE AI online...",
-  "[00:10] Scanning threat vectors...",
-];
-let logIndex = 0;
+// --- FORM SUBMIT --- //
+document.getElementById('login-form').addEventListener('submit', e=>{
+  e.preventDefault();
+  document.getElementById('auth-panel').classList.add('hidden');
+  document.getElementById('dashboard').classList.remove('hidden');
+  startLogs();
+  startAlerts();
+});
 
-function playLog() {
-  if (logIndex < logMessages.length) {
-    const logElement = document.createElement("div");
-    logElement.textContent = logMessages[logIndex];
-    document.getElementById("log-content").appendChild(logElement);
-    logIndex++;
-    setTimeout(playLog, 3000);
-  }
+// --- MISSION LOG --- //
+const logs = ['[00:00] Protocol Init.', '[00:05] GreyEUE Online...', '[00:10] Scanning Threats...'];
+function startLogs(){
+  const container = document.querySelector('#mission-log .log');
+  logs.forEach((msg,idx)=>{
+    setTimeout(()=>{
+      const d = document.createElement('div');
+      d.textContent = msg;
+      container.appendChild(d);
+    }, idx*3000);
+  });
+}
+
+// --- INTRUSION ALERTS --- //
+function startAlerts(){
+  const ul = document.querySelector('#alerts ul');
+  setInterval(()=>{
+    const li = document.createElement('li');
+    li.textContent = '⚠️ ALERT: Unauthorized access detected';
+    li.classList.add('alert');
+    ul.appendChild(li);
+    li.classList.add('alert-blink');
+  }, 7000);
 }
