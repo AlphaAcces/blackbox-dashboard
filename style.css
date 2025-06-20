@@ -1,124 +1,104 @@
-/* --- Global Reset & BG --- */
+/* Global reset */
 * { margin:0; padding:0; box-sizing:border-box; }
 body {
-  font-family: 'Courier New', monospace;
-  background: #041a10 url('assets/noise.png') repeat;
-  color: #3dfc89;
-  overflow-x: hidden;
-}
-#bg-overlay {
-  position:fixed;top:0;left:0;width:100%;height:100%;
-  background: rgba(0,0,0,0.6);
-  pointer-events:none;
-}
-
-/* --- Terminal Layout --- */
-#terminal {
-  display:grid;
-  grid-template-columns: 200px 1fr;
-  grid-template-rows: auto 1fr;
-  gap:10px;
-  height:100vh;
-}
-aside#seal {
-  grid-row:1/3;
-  background:rgba(0,0,0,0.3);
-  display:flex;align-items:center;justify-content:center;
+  background:#000;
+  color:#0f0;
+  font-family: monospace;
+  line-height:1.4;
   padding:20px;
 }
-aside#seal img { max-width:100%; }
 
-/* Auth Panel */
-#auth-panel {
-  grid-column:2;
-  padding:40px;
-  border-left:2px solid #3dfc89;
-}
-#auth-panel h1 {
-  font-size:2rem;
-  letter-spacing:.2rem;
-  margin-bottom:1rem;
-}
-#login-form {
-  display:grid;
-  gap:1rem;
-  max-width:400px;
-}
-#login-form label {
-  display:flex;flex-direction:column;
-  font-size:.9rem;
-}
-#login-form input {
-  padding:.5rem;
-  border:1px solid #3dfc89;
-  background:rgba(0,0,0,0.2);
-  color:#3dfc89;
-}
-#login-form button {
-  padding:.7rem;
-  background:none;
-  border:2px solid #3dfc89;
-  color:#3dfc89;
-  cursor:pointer;
-  font-size:1rem;
-  letter-spacing:.1rem;
+/* Logo */
+#logo {
+  position:fixed;
+  top:10px; right:10px;
+  width:80px;
+  opacity:0.8;
 }
 
-/* Dashboard Grid */
-#dashboard {
-  grid-column:2;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  grid-auto-rows:200px;
-  gap:15px;
-  padding:20px;
-}
-.widget {
-  border:2px solid #3dfc89;
-  padding:10px;
+/* Panels */
+.panel {
+  border:2px solid #0f0;
+  padding:15px;
+  margin:20px 0;
   position:relative;
-  overflow:hidden;
-}
-.widget h2 {
-  position:absolute;top:10px;left:50%;
-  transform:translateX(-50%);
-  background:#041a10; padding:0 .5rem;
 }
 
-/* Specific */
-#mission-log .log {
-  margin-top:2rem;
-  font-size:.9rem;
-  line-height:1.2;
-}
-#threat-map {
-  display:flex;align-items:center;justify-content:center;
-}
+/* Login */
+#login-screen { text-align:center; }
+#login-screen h1 { font-size:2rem; margin-bottom:10px; }
+.prompt { margin-bottom:5px; }
+#auth-code { padding:5px; width:200px; font-size:1rem; }
+#login-btn { padding:5px 15px; font-size:1rem; }
+
+/* Mission log text */
+.log-text { font-family: monospace; white-space: pre-wrap; }
+
+/* Threat map */
+.map-container { position:relative; display:inline-block; }
 .marker {
-  position:absolute; width:12px;height:12px;
-  background:#3dfc89; border:2px solid #0c6; border-radius:50%;
-  animation:blink 1s infinite;
+  position:absolute;
+  width:12px; height:12px;
+  background:rgba(0,255,0,0.8);
+  border:2px solid #0f0;
+  border-radius:50%;
+  animation: blink 1s infinite;
 }
-.marker.critical { background:red; border-color:#f00; }
-@keyframes blink { 0%,100%{opacity:1;}50%{opacity:0;} }
-
-#alerts ul, #redteam ul {
-  margin-top:2rem;
-  list-style:disc inside;
-}
-.active{color:#0f0;animation:pulse 2s infinite;}
-.standby{color:#888;}
-
-#videofeed video {
-  width:100%; height:100%; object-fit:cover;
-  border:1px solid #3dfc89;
+.marker.critical { background:rgba(255,0,0,0.8); border-color:red; }
+@keyframes blink {
+  0%,50%,100% { opacity:1; }
+  25%,75%   { opacity:0; }
 }
 
-/* Hidden by default */
-.hidden { display:none !important; }
+/* Alerts */
+#alerts-list li {
+  color:#f00; font-weight:bold; margin-bottom:5px;
+}
+.alert-blink { animation: blink 1s 3; }
 
-/* Typewriter */
-.typewriter::after {
-  content:'|';
-  animation:blink 1s step-end infinite;
+/* Status */
+.status.active  { color:#0f0; animation: pulse 2s infinite; }
+.status.standby { color:#ff0; }
+
+/* Video + noise */
+.video-container { position:relative; width:100%; max-width:600px; margin:0 auto; }
+#camera-feed {
+  width:100%;
+  border:2px solid #0f0;
+}
+.noise-overlay {
+  position:absolute;
+  top:0; left:0;
+  width:100%; height:100%;
+  pointer-events:none;
+  opacity:0.2;
+  animation: glitch 5s infinite;
+}
+@keyframes glitch {
+  0%,20%,40%,60%,80%,100% { transform:translate(0,0); }
+  10% { transform:translate(-2px,2px); }
+  30% { transform:translate(2px,-2px); }
+  50% { transform:translate(-2px,-2px); }
+  70% { transform:translate(2px,2px); }
+  90% { transform:translate(-2px,0); }
+}
+
+/* Traffic cams grid */
+#traffic-cams { margin:30px 0; }
+.cams-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+  gap:10px;
+}
+.cams-grid img {
+  width:100%; height:auto;
+  border:2px solid #0f0;
+  box-shadow:0 0 10px rgba(0,255,0,0.5);
+  background:#000;
+}
+
+/* Keyframes */
+@keyframes pulse {
+  0%,100% { opacity:1; }
+  50%      { opacity:0.5; }
 }
