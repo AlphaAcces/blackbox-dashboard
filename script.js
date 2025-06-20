@@ -10,3 +10,17 @@ function typeWriter(targetElementId) {
   }
 }
 
+const logMessages = [
+  "[00:00] Mission Protocol Initialized",
+  "[00:05] GreyEUE AI online...",
+  "[00:10] Scanning threat vectors...",
+  // ... etc.
+];
+let logIndex = 0;
+function playLog() {
+  if(logIndex < logMessages.length) {
+    typeWriterAddLine("log-content", logMessages[logIndex]);
+    logIndex++;
+    setTimeout(playLog, 5000); // 5 sec between lines, adjustable
+  }
+}
