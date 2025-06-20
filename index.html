@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>BLACKBOX MISSION CONTROL</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="login">
+    <h1>ALPHA PROTOCOL – ACCESS TERMINAL</h1>
+    <input type="text" placeholder="Username" />
+    <input type="password" placeholder="Password" />
+    <input type="text" placeholder="PIN" maxlength="6" />
+    <input type="text" placeholder="Token" />
+    <button onclick="enter()">ENTER</button>
+  </div>
+  <div id="dashboard" class="hidden">
+    <header>
+      <img src="assets/logo.png" />
+      <h2>BLACKBOX MISSION CONTROL</h2>
+      <div id="clock"></div>
+    </header>
+    <main>
+      <section class="panel" id="mission">
+        <h3>Mission Log</h3>
+        <ul>
+          <li>[06:00] GREYEUE AI initialized</li>
+          <li>[06:01] Encrypted uplink active</li>
+          <li>[06:02] Cameras online</li>
+        </ul>
+      </section>
+      <section class="panel" id="system">
+        <h3>System Status</h3>
+        <p>Uplink: <span class="green">OK</span></p>
+        <p>Node sync: <span class="green">Stable</span></p>
+        <p>Surveillance: <span class="green">Active</span></p>
+      </section>
+      <section class="panel" id="worldmap">
+        <h3>Threat Map</h3>
+        <img src="assets/world_map.png" />
+      </section>
+      <section class="panel" id="cams">
+        <h3>Live Traffic Cams</h3>
+        <div class="grid">
+          <img src="https://livetraffic.eu/wp-content/uploads/webcams/frederiks.jpg" />
+          <img src="https://livetraffic.eu/wp-content/uploads/webcams/ishoej_cam1.jpg" />
+          <img src="https://livetraffic.eu/wp-content/uploads/webcams/taastrup.jpg" />
+          <img src="https://livetraffic.eu/wp-content/uploads/webcams/center_boulevard_cam1.jpg" />
+          <img src="https://livetraffic.eu/wp-content/uploads/webcams/m10_vallensbaektorvevej_cam1.jpg" />
+          <img src="https://livetraffic.eu/wp-content/uploads/webcams/amager_strandvej_cam1.jpg" />
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
