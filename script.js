@@ -24,3 +24,20 @@ function playLog() {
     setTimeout(playLog, 5000); // 5 sec between lines, adjustable
   }
 }
+
+.marker {
+  position: absolute;
+  width: 10px; height: 10px;
+  background: rgba(0, 255, 0, 0.8); /* green dot */
+  border: 2px solid #0f0;
+  border-radius: 50%;
+  animation: blink 1s infinite;
+}
+.marker.critical { /* a critical threat marker could be red */
+  background: rgba(255, 0, 0, 0.8);
+  border-color: red;
+}
+@keyframes blink {
+  0%, 50%, 100% { opacity: 1; }
+  25%, 75% { opacity: 0; }
+}
