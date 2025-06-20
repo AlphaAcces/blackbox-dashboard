@@ -1,64 +1,48 @@
+
+body {
+  background-color: black;
+  color: lime;
+  font-family: monospace;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+.panel {
+  border: 1px solid lime;
+  margin: 20px auto;
+  padding: 20px;
+  width: 80%;
+  background-color: rgba(0, 255, 0, 0.05);
+}
+#login-screen {
+  padding-top: 100px;
+}
+.hidden {
+  display: none;
+}
 .marker {
   position: absolute;
-  width: 10px; height: 10px;
-  background: rgba(0, 255, 0, 0.8); /* green dot */
+  width: 10px;
+  height: 10px;
+  background: lime;
   border: 2px solid #0f0;
   border-radius: 50%;
   animation: blink 1s infinite;
 }
-.marker.critical { /* a critical threat marker could be red */
-  background: rgba(255, 0, 0, 0.8);
+.marker.critical {
+  background: red;
   border-color: red;
 }
 @keyframes blink {
-  0%, 50%, 100% { opacity: 1; }
-  25%, 75% { opacity: 0; }
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }
-
-#alerts-list li {
-  color: #f00;
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-.alert-blink {  /* class to trigger a blink animation for new alerts */
-  animation: blink 1s 3;
-}
-
-@keyframes glitch {
-  0% { transform: none; }
-  20% { transform: translateX(-2px); }
-  21% { transform: none; }
-  22% { transform: translateX(2px); }
-  24% { transform: none; }
-  100% { transform: none; }
-}
-#camera-feed { animation: glitch 5s infinite; }
-
-.glitch {
+.video-container {
   position: relative;
   display: inline-block;
 }
-.glitch::before, .glitch::after {
-  content: attr(data-text);
-  position: absolute; top:0; left:0;
-  /* identical size/position as parent text */
-  color: #fff; /* base color, will be overridden by shadow */
+video {
+  width: 320px;
+  height: 240px;
+  border: 1px solid lime;
 }
-.glitch::before { text-shadow: 2px 0 red;  animation: glitchAnim 2s infinite; }
-.glitch::after  { text-shadow: -2px 0 blue; animation: glitchAnim2 2s infinite; }
-@keyframes glitchAnim {
-  0% { transform: translate(0, 0); opacity:1; }
-  50% { transform: translate(-2px, -1px); opacity:0.8;}
-  100% { transform: translate(0,0); opacity:1;}
-}
-@keyframes glitchAnim2 {
-  0% { transform: translate(0, 0); opacity:1;}
-  50% { transform: translate(2px, 1px); opacity:0.8;}
-  100% { transform: translate(0,0); opacity:1;}
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
-}
-.status.active { animation: pulse 2s infinite; }

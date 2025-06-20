@@ -1,46 +1,57 @@
-<div id="login-screen">
-  <h1>BLACKBOX ACCESS PROTOCOL</h1>
-  <p class="prompt">Enter Authorization Code:</p>
-  <input type="password" id="auth-code" maxlength="16" />
-  <button id="login-btn">INITIATE</button>
-  <div id="ai-feedback" class="terminal-text"></div>
-</div>
 
-<div id="mission-log" class="panel">
-  <h2>Mission Log</h2>
-  <div id="log-content" class="log-text">
-    <!-- Log lines will be appended here -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BLACKBOX ACCESS PROTOCOL</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="login-screen">
+    <h1>BLACKBOX ACCESS PROTOCOL</h1>
+    <p class="prompt">Enter Authorization Code:</p>
+    <input type="password" id="auth-code" maxlength="16" />
+    <button id="login-btn">INITIATE</button>
+    <div id="ai-feedback" class="terminal-text"></div>
   </div>
-</div>
 
-<div id="threat-map" class="panel">
-  <h2>Global Threat Map</h2>
-  <div class="map-container">
-    <img src="assets/world_map.png" alt="Threat Map" />
-    <div class="marker" style="top:30%; left:55%;"></div>
-    <div class="marker critical" style="top:60%; left:20%;"></div>
-    <!-- ... other markers ... -->
+  <div id="dashboard" class="hidden">
+    <div id="mission-log" class="panel">
+      <h2>Mission Log</h2>
+      <div id="log-content" class="log-text"></div>
+    </div>
+
+    <div id="threat-map" class="panel">
+      <h2>Global Threat Map</h2>
+      <div class="map-container">
+        <img src="assets/world_map.png" alt="Threat Map" />
+        <div class="marker" style="top:30%; left:55%;"></div>
+        <div class="marker critical" style="top:60%; left:20%;"></div>
+      </div>
+    </div>
+
+    <div id="alerts-panel" class="panel">
+      <h2>Intrusion Alerts</h2>
+      <ul id="alerts-list"></ul>
+    </div>
+
+    <div id="redteam-panel" class="panel">
+      <h2>Red Team Operations</h2>
+      <ul id="redteam-status">
+        <li>Operation Alpha – <span class="status active">ACTIVE</span></li>
+        <li>Operation Bravo – <span class="status standby">STANDBY</span></li>
+      </ul>
+    </div>
+
+    <div id="video-panel" class="panel">
+      <h2>Recon Camera Feed</h2>
+      <div class="video-container">
+        <video id="camera-feed" src="assets/fake_feed.mp4" autoplay loop muted playsinline></video>
+      </div>
+    </div>
   </div>
-</div>
 
-<div id="alerts-panel" class="panel">
-  <h2>Intrusion Alerts</h2>
-  <ul id="alerts-list">
-    <!-- JS will append <li> items here -->
-  </ul>
-</div>
-
-<div id="redteam-panel" class="panel">
-  <h2>Red Team Operations</h2>
-  <ul id="redteam-status">
-    <li>Operation Alpha – <span class="status active">ACTIVE</span></li>
-    <li>Operation Bravo – <span class="status standby">STANDBY</span></li>
-  </ul>
-</div>
-
-<div id="video-panel" class="panel">
-  <h2>Recon Camera Feed</h2>
-  <div class="video-container">
-    <video id="camera-feed" src="assets/fake_feed.mp4" autoplay loop muted playsinline></video>
-  </div>
-</div>
+<script src="script.js"></script>
+</body>
+</html>
