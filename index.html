@@ -1,65 +1,95 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="da">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Blackbox EYE – Alpha Protocol</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Blackbox Eye ALPHA PROTOCOL Dashboard</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div id="bg-overlay"></div>
-  <main id="terminal">
-    <aside id="seal">
-      <img src="assets/logo_corner.png" alt="Blackbox Eye Seal" />
-    </aside>
-    <section id="auth-panel">
-      <h1>ALPHA PROTOCOL</h1>
-      <p class="typewriter">> INITIATING TERMINAL ACCESS...</p>
-      <form id="login-form">
-        <label>
-          network_operator:
-          <input type="text" name="operator" />
-        </label>
-        <label>
-          password:
-          <input type="password" name="password" />
-        </label>
-        <label>
-          enclave_pass:
-          <input type="password" name="enclave" />
-        </label>
-        <button type="submit">UNLOCK</button>
-      </form>
-    </section>
 
-    <section id="dashboard" class="hidden">
-      <div class="widget" id="mission-log">
-        <h2>Mission Log</h2>
-        <div class="log"></div>
-      </div>
-      <div class="widget" id="threat-map">
-        <h2>Global Threat Map</h2>
-        <img src="assets/world_map.png" alt="" />
-        <div class="marker" style="top:30%; left:55%"></div>
-        <div class="marker critical" style="top:60%; left:20%"></div>
-      </div>
-      <div class="widget" id="alerts">
-        <h2>Intrusion Alerts</h2>
-        <ul></ul>
-      </div>
-      <div class="widget" id="redteam">
-        <h2>Red Team Ops</h2>
-        <ul>
-          <li>Alpha – <span class="active">ACTIVE</span></li>
-          <li>Bravo – <span class="standby">STANDBY</span></li>
-        </ul>
-      </div>
-      <div class="widget" id="videofeed">
-        <h2>Recon Camera Feed</h2>
-        <video src="assets/fake_feed.mp4" autoplay loop muted playsinline></video>
-      </div>
-    </section>
-  </main>
+  <!-- Logo i hjørnet -->
+  <img id="logo" src="assets/logo_corner.png" alt="Blackbox Eye Logo" />
+
+  <!-- Login-skærm -->
+  <div id="login-screen">
+    <h1>BLACKBOX ACCESS PROTOCOL</h1>
+    <p class="prompt">Enter Authorization Code:</p>
+    <input type="password" id="auth-code" maxlength="16" />
+    <button id="login-btn">INITIATE</button>
+    <div id="ai-feedback" class="terminal-text"></div>
+  </div>
+
+  <!-- Mission Log -->
+  <div id="mission-log" class="panel">
+    <h2>Mission Log</h2>
+    <div id="log-content" class="log-text">
+      <!-- JS vil fylde log-linjer ind her -->
+    </div>
+  </div>
+
+  <!-- Global Threat Map -->
+  <div id="threat-map" class="panel">
+    <h2>Global Threat Map</h2>
+    <div class="map-container">
+      <img src="assets/world_map.png" alt="Threat Map" />
+      <!-- Eksempel markører -->
+      <div class="marker" style="top:30%; left:55%;"></div>
+      <div class="marker critical" style="top:60%; left:20%;"></div>
+    </div>
+  </div>
+
+  <!-- Intrusion Alerts -->
+  <div id="alerts-panel" class="panel">
+    <h2>Intrusion Alerts</h2>
+    <ul id="alerts-list">
+      <!-- JS vil fylde <li> ind her -->
+    </ul>
+  </div>
+
+  <!-- Red Team Operations -->
+  <div id="redteam-panel" class="panel">
+    <h2>Red Team Operations</h2>
+    <ul id="redteam-status">
+      <li>Operation Alpha – <span class="status active">ACTIVE</span></li>
+      <li>Operation Bravo – <span class="status standby">STANDBY</span></li>
+    </ul>
+  </div>
+
+  <!-- Recon Camera Feed -->
+  <div id="video-panel" class="panel">
+    <h2>Recon Camera Feed</h2>
+    <div class="video-container">
+      <video id="camera-feed" src="assets/fake_feed.mp4" autoplay loop muted playsinline></video>
+      <img class="noise-overlay" src="assets/noise.png" alt="Static Noise" />
+    </div>
+  </div>
+
+  <!-- Live Traffic Cams -->
+  <div id="traffic-cams" class="panel">
+    <h2>Live Traffic Cams</h2>
+    <div class="cams-grid">
+      <img id="cam1"
+           src="https://livetraffic.eu/wp-content/uploads/webcams/frederiks.jpg?v=1750399595"
+           alt="Frederiks" />
+      <img id="cam2"
+           src="https://livetraffic.eu/wp-content/uploads/webcams/ishoej_cam1.jpg?v=1750399595"
+           alt="Ishøj" />
+      <img id="cam3"
+           src="https://livetraffic.eu/wp-content/uploads/webcams/taastrup.jpg?v=1750399595"
+           alt="Taastrup" />
+      <img id="cam4"
+           src="https://livetraffic.eu/wp-content/uploads/webcams/center_boulevard_cam1.jpg?v=1750399595"
+           alt="Center Boulevard" />
+      <img id="cam5"
+           src="https://livetraffic.eu/wp-content/uploads/webcams/m10_vallensbaektorvevej_cam1.jpg?v=1750399966"
+           alt="Vallensbæk Torvevej" />
+      <img id="cam6"
+           src="https://livetraffic.eu/wp-content/uploads/webcams/amager_strandvej_cam1.jpg?v=1750400019"
+           alt="Amager Strandvej" />
+    </div>
+  </div>
+
   <script src="script.js"></script>
 </body>
 </html>
