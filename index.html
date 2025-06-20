@@ -1,57 +1,65 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>BLACKBOX ACCESS PROTOCOL</title>
-  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Blackbox EYE – Alpha Protocol</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div id="login-screen">
-    <h1>BLACKBOX ACCESS PROTOCOL</h1>
-    <p class="prompt">Enter Authorization Code:</p>
-    <input type="password" id="auth-code" maxlength="16" />
-    <button id="login-btn">INITIATE</button>
-    <div id="ai-feedback" class="terminal-text"></div>
-  </div>
+  <div id="bg-overlay"></div>
+  <main id="terminal">
+    <aside id="seal">
+      <img src="assets/logo_corner.png" alt="Blackbox Eye Seal" />
+    </aside>
+    <section id="auth-panel">
+      <h1>ALPHA PROTOCOL</h1>
+      <p class="typewriter">> INITIATING TERMINAL ACCESS...</p>
+      <form id="login-form">
+        <label>
+          network_operator:
+          <input type="text" name="operator" />
+        </label>
+        <label>
+          password:
+          <input type="password" name="password" />
+        </label>
+        <label>
+          enclave_pass:
+          <input type="password" name="enclave" />
+        </label>
+        <button type="submit">UNLOCK</button>
+      </form>
+    </section>
 
-  <div id="dashboard" class="hidden">
-    <div id="mission-log" class="panel">
-      <h2>Mission Log</h2>
-      <div id="log-content" class="log-text"></div>
-    </div>
-
-    <div id="threat-map" class="panel">
-      <h2>Global Threat Map</h2>
-      <div class="map-container">
-        <img src="assets/world_map.png" alt="Threat Map" />
-        <div class="marker" style="top:30%; left:55%;"></div>
-        <div class="marker critical" style="top:60%; left:20%;"></div>
+    <section id="dashboard" class="hidden">
+      <div class="widget" id="mission-log">
+        <h2>Mission Log</h2>
+        <div class="log"></div>
       </div>
-    </div>
-
-    <div id="alerts-panel" class="panel">
-      <h2>Intrusion Alerts</h2>
-      <ul id="alerts-list"></ul>
-    </div>
-
-    <div id="redteam-panel" class="panel">
-      <h2>Red Team Operations</h2>
-      <ul id="redteam-status">
-        <li>Operation Alpha – <span class="status active">ACTIVE</span></li>
-        <li>Operation Bravo – <span class="status standby">STANDBY</span></li>
-      </ul>
-    </div>
-
-    <div id="video-panel" class="panel">
-      <h2>Recon Camera Feed</h2>
-      <div class="video-container">
-        <video id="camera-feed" src="assets/fake_feed.mp4" autoplay loop muted playsinline></video>
+      <div class="widget" id="threat-map">
+        <h2>Global Threat Map</h2>
+        <img src="assets/world_map.png" alt="" />
+        <div class="marker" style="top:30%; left:55%"></div>
+        <div class="marker critical" style="top:60%; left:20%"></div>
       </div>
-    </div>
-  </div>
-
-<script src="script.js"></script>
+      <div class="widget" id="alerts">
+        <h2>Intrusion Alerts</h2>
+        <ul></ul>
+      </div>
+      <div class="widget" id="redteam">
+        <h2>Red Team Ops</h2>
+        <ul>
+          <li>Alpha – <span class="active">ACTIVE</span></li>
+          <li>Bravo – <span class="standby">STANDBY</span></li>
+        </ul>
+      </div>
+      <div class="widget" id="videofeed">
+        <h2>Recon Camera Feed</h2>
+        <video src="assets/fake_feed.mp4" autoplay loop muted playsinline></video>
+      </div>
+    </section>
+  </main>
+  <script src="script.js"></script>
 </body>
 </html>
